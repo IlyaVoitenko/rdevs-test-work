@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import CalendarPage from "./components/CalendarPage/CalendarPage";
 import AboutPage from "./components/AboutPage/AboutPage";
@@ -7,17 +7,17 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <div>
+        <div className="">
           <nav>
-            <ul>
+            <ul className="navigateListLinks">
               <li>
                 <Link to="/">CalendarPage</Link>
               </li>
               <li>
-                <Link to="/aboutPage">About</Link>
+                <Link to="/AboutUs">About Us</Link>
               </li>
               <li>
-                <Link to="/form">Form</Link>
+                <Link to="/Form">Form</Link>
               </li>
             </ul>
           </nav>
@@ -25,10 +25,10 @@ function App() {
             <Route exact path="/">
               <CalendarPage />
             </Route>
-            <Route exact path="/aboutPage">
+            <Route exact path="/AboutUs">
               <AboutPage />
             </Route>
-            <Route exact path="/form">
+            <Route exact path="/Form">
               <Form />
             </Route>
           </Switch>

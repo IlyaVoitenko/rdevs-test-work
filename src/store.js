@@ -1,9 +1,14 @@
 import { createStore } from "redux";
-let initialState = {};
+let initialState = {
+  countDaysCurrencyMonth: [],
+  dateMonthYear: "",
+};
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "value":
-      break;
+    case "getDaysMonth":
+      return { ...state, countDaysCurrencyMonth: action.payload };
+    case "updateMonthYear":
+      return { ...state, dateMonthYear: action.payload };
     default:
       break;
   }
