@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
     case "decrementMonth":
       return { ...state, currentMonth: state.currentMonth - 1 };
     default:
-      break;
+      return state;
   }
 };
 const store = createStore(

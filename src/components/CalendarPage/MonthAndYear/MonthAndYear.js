@@ -7,6 +7,8 @@ const MonthAndYear = () => {
   const currentMonth = useSelector((state) => state.currentMonth);
   const currentYear = useSelector((state) => state.currentYear);
   const daysCurrentMonthState = useSelector((state) => state.daysCurrentMonth);
+
+  const daysInMonth = moment(`${currentMonth}${currentYear}`).daysInMonth();
   const dispatch = useDispatch();
   return (
     <div className={styleCalendarPage.containerMonthAndYear}>
