@@ -5,12 +5,6 @@ import styleMonthAndYear from './MonthAndYear.module.scss';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 
-function getDayInMonth(state) {
-  const { currentMonth, currentYear } = state;
-  const daysInMonth = moment(`${currentYear}-${currentMonth}`).daysInMonth();
-  return daysInMonth;
-}
-
 function getMonth(state) {
   return state.currentMonth;
 }
@@ -22,8 +16,6 @@ function getYear(state) {
 const MonthAndYear = () => {
   const currentMonth = useSelector(getMonth);
   const currentYear = useSelector(getYear);
-
-  const dayInMonth = useSelector(getDayInMonth);
 
   const dispatch = useDispatch();
   return (

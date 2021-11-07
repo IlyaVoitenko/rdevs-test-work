@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './CalendarPage.module.scss';
-import DayMonth from './DayMonth/DayMonth';
+import DaysOfMonth from './DaysOfMonth/DaysOfMonth';
 import MonthAndYear from './MonthAndYear/MonthAndYear';
 
 const CalendarPage = () => {
@@ -10,7 +10,7 @@ const CalendarPage = () => {
         <div className={style.containerDaysMonth}>
           <MonthAndYear />
           <hr />
-          <DayMonth />
+          <DaysOfMonth />
         </div>
       </div>
     </div>
