@@ -1,9 +1,10 @@
-import React from "react";
-import style from "./scss/CalendarPage.module.scss";
-import moment from "moment";
-import DayMonth from "./dayMonth/DayMonth";
-import MonthAndYear from "./MonthAndYear/MonthAndYear";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import style from './CalendarPage.module.scss';
+import moment from 'moment';
+import DayMonth from './DayMonth/DayMonth';
+import MonthAndYear from './MonthAndYear/MonthAndYear';
+import { useDispatch } from 'react-redux';
+
 const CalendarPage = () => {
   const dispatch = useDispatch();
   let now = moment();
@@ -13,14 +14,14 @@ const CalendarPage = () => {
   let year = moment().year();
   //get a current month
   let month = moment().month() + 1;
-  let currMonthYear = moment(`${year}-${month}`).format("MMMM YYYY");
+  let currMonthYear = moment(`${year}-${month}`).format('MMMM YYYY');
   // let prevMonthFirstDay = moment()
   //   .subtract(1, "months")
   //   .startOf("month")
   //   .format("MMMM");
   //write a current Month and Year to store
   dispatch({
-    type: "updateMonthYear",
+    type: 'updateMonthYear',
     payload: currMonthYear,
   });
   return (

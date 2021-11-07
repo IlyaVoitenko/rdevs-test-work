@@ -1,6 +1,6 @@
 import React from 'react';
 // import style from "../scss/CalendarPage.module.scss";
-import styleCalendarPage from '../scss/CalendarPage.module.scss';
+import styleCalendarPage from '../CalendarPage.module.scss';
 import styleMonthAndYear from './MonthAndYear.module.scss';
 import moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
@@ -30,6 +30,7 @@ const MonthAndYear = () => {
     <div className={styleCalendarPage.containerMonthAndYear}>
       <button
         className={styleMonthAndYear.prevBtnMonth}
+        // move function to component before return
         onClick={() => {
           if (currentMonth === 1) {
             return dispatch({ type: 'lastYear' });
