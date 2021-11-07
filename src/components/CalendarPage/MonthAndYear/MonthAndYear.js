@@ -1,5 +1,4 @@
 import React from "react";
-// import style from "../scss/CalendarPage.module.scss";
 import styleCalendarPage from "../scss/CalendarPage.module.scss";
 import styleMonthAndYear from "./MonthAndYear.module.scss";
 import moment from "moment";
@@ -7,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 const MonthAndYear = () => {
   const currentMonth = useSelector((state) => state.currentMonth);
   const currentYear = useSelector((state) => state.currentYear);
+  const daysCurrentMonthState = useSelector((state) => state.daysCurrentMonth);
   const dispatch = useDispatch();
   return (
     <div className={styleCalendarPage.containerMonthAndYear}>
@@ -28,6 +28,16 @@ const MonthAndYear = () => {
       <button
         className={styleMonthAndYear.nextBtnMonth}
         onClick={() => {
+          let daysCurrentMonth = moment(
+            `${currentYear}-${currentMonth}`,
+            "YYYY-MM"
+          ).daysInMonth();
+          console.log(daysCurrentMonth);
+          dispatch({
+            type: "initialArrayDaysOfMonth",
+            payload: daysCurrentMonth,
+          });
+          console.log(daysCurrentMonthState);
           if (currentMonth === 12) {
             return dispatch({ type: "nextYear" });
           }
