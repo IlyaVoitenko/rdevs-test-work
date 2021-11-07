@@ -2,10 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import style from './DayMonth.module.scss';
 
-const DayMonth = ({ countDaysMonth }) => {
-  const dispatch = useDispatch();
-  //
-
+const DayMonth = () => {
   const countDaysCurrentMonth = useSelector(
     (state) => state.countDaysCurrencyMonth,
   );
