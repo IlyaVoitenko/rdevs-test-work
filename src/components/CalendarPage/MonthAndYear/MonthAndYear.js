@@ -1,12 +1,30 @@
-import React from "react";
+import React from 'react';
 // import style from "../scss/CalendarPage.module.scss";
-import styleCalendarPage from "../scss/CalendarPage.module.scss";
-import styleMonthAndYear from "./MonthAndYear.module.scss";
-import moment from "moment";
-import { useSelector, useDispatch } from "react-redux";
+import styleCalendarPage from '../scss/CalendarPage.module.scss';
+import styleMonthAndYear from './MonthAndYear.module.scss';
+import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
+
+function getDayInMonth(state) {
+  const { currentMonth, currentYear } = state;
+  const daysInMonth = moment(`${currentYear}-${currentMonth}`).daysInMonth();
+  return daysInMonth;
+}
+
+function getMonth(state) {
+  return state.currentMonth;
+}
+
+function getYear(state) {
+  return state.currentYear;
+}
+
 const MonthAndYear = () => {
-  const currentMonth = useSelector((state) => state.currentMonth);
-  const currentYear = useSelector((state) => state.currentYear);
+  const currentMonth = useSelector(getMonth);
+  const currentYear = useSelector(getYear);
+
+  const dayInMonth = useSelector(getDayInMonth);
+
   const dispatch = useDispatch();
   return (
     <div className={styleCalendarPage.containerMonthAndYear}>
@@ -14,12 +32,12 @@ const MonthAndYear = () => {
         className={styleMonthAndYear.prevBtnMonth}
         onClick={() => {
           if (currentMonth === 1) {
-            return dispatch({ type: "lastYear" });
+            return dispatch({ type: 'lastYear' });
           }
-          dispatch({ type: "decrementMonth" });
+          dispatch({ type: 'decrementMonth' });
         }}
       >
-        {" "}
+        {' '}
         &lt;
       </button>
       <span className={styleMonthAndYear.spanMonth}>
@@ -29,9 +47,9 @@ const MonthAndYear = () => {
         className={styleMonthAndYear.nextBtnMonth}
         onClick={() => {
           if (currentMonth === 12) {
-            return dispatch({ type: "nextYear" });
+            return dispatch({ type: 'nextYear' });
           }
-          dispatch({ type: "incrementMonth" });
+          dispatch({ type: 'incrementMonth' });
         }}
       >
         &gt;
