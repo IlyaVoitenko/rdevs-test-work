@@ -28,10 +28,10 @@ const DaysOfMonth = () => {
   const currentYear = useSelector((state) => state.currentYear);
   const currentMonth = useSelector((state) => state.currentMonth);
   function isDayOfWeek(day, month, year) {
+    // MONDAY - 0, а Sunday - 6.
     return moment(`${day}.${month}.${year}`, "DD.MM.YYYY").day();
   }
   function getArrayCountDaysOfMonth(month) {
-    console.log("the last day of the last month ;", month);
     return Array(month)
       .fill(null)
       .map((_, index) => {
@@ -39,33 +39,26 @@ const DaysOfMonth = () => {
       });
   }
   let theLastDayMonth = moment(`${currentYear}-${currentMonth}`).daysInMonth();
-  console.log("theLastDayMonth : ", theLastDayMonth);
   let firstDayCurrentMonth = isDayOfWeek(1, currentMonth, currentYear);
-  let isTheLastCurrentDayMonth = isDayOfWeek(
+  let numberTheLastDayCurrentMonth = isDayOfWeek(
     theLastDayMonth,
     currentMonth,
     currentYear
   );
-  let sliceEndPoint = Math.abs(isTheLastCurrentDayMonth - 7);
-  let resRemainderPrevMonth = getArrayCountDaysOfMonth(prevDaysOfMonth);
-  let resRemainderNextMonth = getArrayCountDaysOfMonth(nextDaysOfMonth);
-  let remainderPrevMonth = resRemainderPrevMonth
+  let sliceEndPoint = Math.abs(numberTheLastDayCurrentMonth - 7);
+  let arrayPrevMonth = getArrayCountDaysOfMonth(prevDaysOfMonth);
+  let arrayNextMonth = getArrayCountDaysOfMonth(nextDaysOfMonth);
+  let arrayCurrentDays = getArrayCountDaysOfMonth(daysInMonth);
+  let remainderPrevMonth = arrayPrevMonth
     .reverse()
     .slice(0, --firstDayCurrentMonth);
   remainderPrevMonth.reverse();
-  let remainderNextMonth = resRemainderNextMonth.slice(0, sliceEndPoint);
-  console.log("array ", remainderNextMonth);
-  console.log(
-    "previos month :",
-    remainderPrevMonth,
-    " ",
-    "the first day of the month  ",
-    firstDayCurrentMonth
-  );
-  return Array(daysInMonth)
-    .fill(null)
-    .map((_, index) => {
-      return <Day key={index} index={index} />;
-    });
+  let remainderNextMonth = arrayNextMonth.slice(0, sliceEndPoint);
+  let calendarDays = [
+    ...remainderPrevMonth,
+    ...arrayCurrentDays,
+    ...remainderNextMonth,
+  ];
+  return calendarDays.map((day) => <Day index={day} />);
 };
 export default DaysOfMonth;
