@@ -1,7 +1,7 @@
-import React from 'react';
-import style from './CalendarPage.module.scss';
-import DaysOfMonth from './DaysOfMonth/DaysOfMonth';
-import MonthAndYear from './MonthAndYear/MonthAndYear';
+import React from "react";
+import style from "./CalendarPage.module.scss";
+import DaysOfMonth from "./DaysOfMonth/DaysOfMonth";
+import MonthAndYear from "./MonthAndYear/MonthAndYear";
 
 const CalendarPage = () => {
   return (

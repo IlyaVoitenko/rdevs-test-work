@@ -8,7 +8,7 @@ $plBtnDays: 10%;
   left: 0px;
   width: 920px;
   height: 908px;
-  background: transparent url('./img/Untitled-1Artboardcopy.png') 0% 0%
+  background: transparent url("./img/Untitled-1Artboardcopy.png") 0% 0%
     no-repeat padding-box;
   opacity: 1;
 }
@@ -44,14 +44,7 @@ $plBtnDays: 10%;
   padding-top: $ptBtnDays;
   padding-left: $plBtnDays;
 }
-.containerDaysMonth button:hover {
-  border: none;
-  width: 52px;
-  height: 51px;
-  background: var(--unnamed-color-fdd000) 0% 0% no-repeat padding-box;
-  background: #fdd000 0% 0% no-repeat padding-box;
-  opacity: 1;
-}
+
 .ptextOnImg {
   top: 533px;
   left: 638px;
