@@ -27,24 +27,39 @@ const DaysOfMonth = () => {
   const nextDaysOfMonth = useSelector(getNextDaysOfMonth);
   const currentYear = useSelector((state) => state.currentYear);
   const currentMonth = useSelector((state) => state.currentMonth);
-  let firstDayCurrentMonth = moment(
-    `1.${currentMonth}.${currentYear}`,
-    "DD.MM.YYYY"
-  ).day();
-  let arrayRemainderPrevMonth = Array(prevDaysOfMonth)
-    .fill(null)
-    .map((_, index) => {
-      return ++index;
-    });
-  let remainderPrevMonth = arrayRemainderPrevMonth
+  function isDayOfWeek(day, month, year) {
+    return moment(`${day}.${month}.${year}`, "DD.MM.YYYY").day();
+  }
+  function getArrayCountDaysOfMonth(month) {
+    console.log("the last day of the last month ;", month);
+    return Array(month)
+      .fill(null)
+      .map((_, index) => {
+        return ++index;
+      });
+  }
+  let theLastDayMonth = moment(`${currentYear}-${currentMonth}`).daysInMonth();
+  console.log("theLastDayMonth : ", theLastDayMonth);
+  let firstDayCurrentMonth = isDayOfWeek(1, currentMonth, currentYear);
+  let isTheLastCurrentDayMonth = isDayOfWeek(
+    theLastDayMonth,
+    currentMonth,
+    currentYear
+  );
+  let sliceEndPoint = Math.abs(isTheLastCurrentDayMonth - 7);
+  let resRemainderPrevMonth = getArrayCountDaysOfMonth(prevDaysOfMonth);
+  let resRemainderNextMonth = getArrayCountDaysOfMonth(nextDaysOfMonth);
+  let remainderPrevMonth = resRemainderPrevMonth
     .reverse()
     .slice(0, --firstDayCurrentMonth);
   remainderPrevMonth.reverse();
+  let remainderNextMonth = resRemainderNextMonth.slice(0, sliceEndPoint);
+  console.log("array ", remainderNextMonth);
   console.log(
-    "RemainderPverMonth  : ",
+    "previos month :",
     remainderPrevMonth,
     " ",
-    "firstDayCurrentMonth :",
+    "the first day of the month  ",
     firstDayCurrentMonth
   );
   return Array(daysInMonth)
