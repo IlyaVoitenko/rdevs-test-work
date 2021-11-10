@@ -27,12 +27,19 @@ const DaysOfMonth = () => {
   const nextDaysOfMonth = useSelector(getNextDaysOfMonth);
   const currentYear = useSelector((state) => state.currentYear);
   const currentMonth = useSelector((state) => state.currentMonth);
+  let lastMonth = useSelector((state) => {
+    const { currentMonth, currentYear } = state;
+    if (currentMonth === 1) {
+      return `${(currentMonth = 12)}${currentYear - 1}`;
+    }
+    return currentMonth - 1;
+  });
   function isDayOfWeek(day, month, year) {
     // MONDAY - 0, а Sunday - 6.
     return moment(`${day}.${month}.${year}`, "DD.MM.YYYY").day();
   }
-  function getArrayCountDaysOfMonth(month) {
-    return Array(month)
+  function getArrayCountDaysOfMonth(days, month) {
+    return Array(days)
       .fill(null)
       .map((_, index) => {
         return ++index;
