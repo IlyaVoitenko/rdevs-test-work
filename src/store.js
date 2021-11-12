@@ -5,6 +5,8 @@ let initialState = {
   dateMonthYear: "",
   currentMonth: moment().month() + 1,
   currentYear: moment().year(),
+  isOpen: false,
+  data: {},
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,6 +22,14 @@ const reducer = (state = initialState, action) => {
       return { ...state, currentMonth: state.currentMonth + 1 };
     case "decrementMonth":
       return { ...state, currentMonth: state.currentMonth - 1 };
+    case "openForm":
+      return {
+        ...state,
+        isOpen: (state.isOpen = true),
+        data: { day: action.payload.day, month: action.payload.month },
+      };
+    case "closeForm":
+      return { ...state, isOpen: (state.isOpen = false), data: null };
     default:
       return state;
   }
