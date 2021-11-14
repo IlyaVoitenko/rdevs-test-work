@@ -1,10 +1,11 @@
-import React from "react";
+import React from 'react';
 // import style from "../scss/CalendarPage.module.scss";
-import styleCalendarPage from "../CalendarPage.module.scss"; //../CalendarPage.module.scss
-import styleMonthAndYear from "./MonthAndYear.module.scss";
-import moment from "moment";
-import { useSelector, useDispatch } from "react-redux";
+import styleCalendarPage from '../CalendarPage.module.scss'; //../CalendarPage.module.scss
+import styleMonthAndYear from './MonthAndYear.module.scss';
+import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
 
+//TODO: reuse this selectors in the whole project
 function getMonth(state) {
   return state.currentMonth;
 }
@@ -17,15 +18,15 @@ const MonthAndYear = () => {
   const currentYear = useSelector(getYear);
   function getNextMonthYear(currentMonth) {
     if (currentMonth === 12) {
-      return dispatch({ type: "incrementYear" });
+      return dispatch({ type: 'incrementYear' });
     }
-    dispatch({ type: "incrementMonth" });
+    dispatch({ type: 'incrementMonth' });
   }
   function getPrevMonthYear(currentMonth) {
     if (currentMonth === 1) {
-      return dispatch({ type: "decrementYear" });
+      return dispatch({ type: 'decrementYear' });
     }
-    dispatch({ type: "decrementMonth" });
+    dispatch({ type: 'decrementMonth' });
   }
   const dispatch = useDispatch();
   return (
@@ -34,7 +35,7 @@ const MonthAndYear = () => {
         className={styleMonthAndYear.prevBtnMonth}
         onClick={() => getPrevMonthYear(currentMonth)}
       >
-        {" "}
+        {' '}
         &lt;
       </button>
       <span className={styleMonthAndYear.spanMonth}>

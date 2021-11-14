@@ -2,36 +2,20 @@ import React from 'react';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
 import Day from './Day';
-function getDaysInMonth(state) {
-  const { currentMonth, currentYear } = state;
-  const daysInMonth = moment(`${currentYear}-${currentMonth}`).daysInMonth();
-  return daysInMonth;
-}
-function getPrevDaysOfMonth(state) {
-  const { currentMonth, currentYear } = state;
-  if (currentMonth === 1) {
-    return 31;
-  }
-  const prevDaysOfMonth = moment(
-    `${currentYear}-${currentMonth - 1}`,
-  ).daysInMonth();
-  return prevDaysOfMonth;
-}
-function getNextDaysOfMonth(state) {
-  const { currentMonth, currentYear } = state;
-  if (currentMonth === 12) {
-    return 31;
-  }
-  const nextDaysOfMonth = moment(
-    `${currentYear}-${currentMonth + 1}`,
-  ).daysInMonth();
-  return nextDaysOfMonth;
-}
+import {
+  getPrevMonthDaysAmount,
+  getDaysInMonth,
+  getNextMonthDaysAmount,
+} from './selectors';
+import { dayOfWeek } from './helpers';
 
+//TODO: move all selectors to separate file
+//TODO: think about naming
+//TODO: maybe move some logic to helpers
 const DaysOfMonth = () => {
-  const prevDaysOfMonth = useSelector(getPrevDaysOfMonth);
+  const prevDaysOfMonth = useSelector(getPrevMonthDaysAmount);
   const daysInMonth = useSelector(getDaysInMonth);
-  const nextDaysOfMonth = useSelector(getNextDaysOfMonth);
+  const nextDaysOfMonth = useSelector(getNextMonthDaysAmount);
 
   const currentYear = useSelector((state) => state.currentYear);
   const currentMonth = useSelector((state) => state.currentMonth);
@@ -42,45 +26,55 @@ const DaysOfMonth = () => {
 
   const nextMonthString = now.clone().add(1, 'months').format('MM-YYYY');
 
-  function isDayOfWeek(day, month, year) {
-    // MONDAY - 0, а Sunday - 6.
-    return moment(`${day}.${month}.${year}`, 'DD.MM.YYYY').day();
-  }
-  function getArrayCountDaysOfMonth(days, month) {
+  function getArrayOfDatesString(days, month) {
     return new Array(days).fill(null).map((_, day) => {
       return `${day + 1}-${month}`;
     });
   }
-  let theLastDayMonth = moment(`${currentYear}-${currentMonth}`).daysInMonth();
-  let firstDayCurrentMonth = isDayOfWeek(1, currentMonth, currentYear);
-  let numberTheLastDayCurrentMonth = isDayOfWeek(
+  //computed values
+  const theLastDayMonth = moment(
+    `${currentYear}-${currentMonth}`,
+  ).daysInMonth();
+
+  const currentMonthDates = getArrayOfDatesString(
+    daysInMonth,
+    currentMonthString,
+  );
+
+  //prev month creating
+  const prevMonth = getArrayOfDatesString(prevDaysOfMonth, prevMonthString);
+  const dayWeekOfFirstDayOfCurrentMonth = dayOfWeek(
+    1,
+    currentMonth,
+    currentYear,
+  );
+  const remainderPrevMonth = prevMonth
+    .reverse()
+    .slice(0, dayWeekOfFirstDayOfCurrentMonth - 1);
+  remainderPrevMonth.reverse();
+
+  //next month creating
+  const dayWeekOfLastDayOfCurrentMonth = dayOfWeek(
     theLastDayMonth,
     currentMonth,
     currentYear,
   );
-  let sliceEndPoint = Math.abs(numberTheLastDayCurrentMonth - 7);
-  let arrayPrevMonth = getArrayCountDaysOfMonth(
-    prevDaysOfMonth,
-    prevMonthString,
+
+  const lengthOfReminderNextMonth = Math.abs(
+    dayWeekOfLastDayOfCurrentMonth - 7,
   );
-  let arrayNextMonth = getArrayCountDaysOfMonth(
+  const nextMonthDates = getArrayOfDatesString(
     nextDaysOfMonth,
     nextMonthString,
   );
-  let arrayCurrentDays = getArrayCountDaysOfMonth(
-    daysInMonth,
-    currentMonthString,
-  );
-  let remainderPrevMonth = arrayPrevMonth
-    .reverse()
-    .slice(0, --firstDayCurrentMonth);
-  remainderPrevMonth.reverse();
-  let remainderNextMonth = arrayNextMonth.slice(0, sliceEndPoint);
-  let calendarDays = [
+
+  const remainderNextMonth = nextMonthDates.slice(0, lengthOfReminderNextMonth);
+  const calendarDays = [
     ...remainderPrevMonth,
-    ...arrayCurrentDays,
+    ...currentMonthDates,
     ...remainderNextMonth,
   ];
+
   return calendarDays.map((day) => <Day fullDate={day} />);
 };
 export default DaysOfMonth;
