@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -7,13 +7,10 @@ export default function Header() {
       <nav>
         <ul className="navigateListLinks">
           <li>
-            <Link to="/">CalendarPage</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <Link to="/AboutUs">About Us</Link>
-          </li>
-          <li>
-            <Link to="/Form">Form</Link>
           </li>
         </ul>
       </nav>

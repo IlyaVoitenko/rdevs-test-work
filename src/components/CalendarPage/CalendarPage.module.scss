@@ -1,35 +1,19 @@
 .container div {
   float: left;
 }
-$ptBtnDays: 34%;
+$ptBtnDays: 20%;
 $plBtnDays: 10%;
 .imgCalendar {
   top: 172px;
   left: 0px;
   width: 920px;
   height: 908px;
-  background: transparent url("./img/Untitled-1Artboardcopy.png") 0% 0%
-    no-repeat padding-box;
   opacity: 1;
 }
 .containerMonthAndYear {
   width: 100%;
 }
-.textOnImg {
-  top: 365px;
-  left: 674px;
-  width: 518px;
-  height: 124px;
-  font: var(--unnamed-font-style-normal) normal normal
-    var(--unnamed-font-size-50) / 64px var(--unnamed-font-family-rubik);
-  color: var(--unnamed-color-fdd000);
-  text-align: right;
-  font: normal normal normal 50px/64px Rubik;
-  letter-spacing: 3.5px;
-  color: #fdd000;
-  text-transform: uppercase;
-  opacity: 1;
-}
+
 .CalendarDiv {
   top: 172px;
   left: 1225px;
@@ -43,18 +27,4 @@ $plBtnDays: 10%;
   height: 400px;
   padding-top: $ptBtnDays;
   padding-left: $plBtnDays;
-}
-
-.ptextOnImg {
-  top: 533px;
-  left: 638px;
-  width: 554px;
-  height: 144px;
-  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300)
-    30px/40px var(--unnamed-font-family-rubik);
-  text-align: right;
-  font: normal normal 300 30px/40px Rubik;
-  letter-spacing: 0.6px;
-  color: #dfdfdf;
-  opacity: 1;
 }
