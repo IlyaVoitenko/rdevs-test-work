@@ -1,9 +1,9 @@
-import React from 'react';
-import style from './Form.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import style from "./ModalWindowDates.module.scss";
+import { useSelector, useDispatch } from "react-redux";
 
 //TODO: rename
-const Form = () => {
+const ModalWindowDates = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
   const { day, month } = data;
@@ -26,15 +26,15 @@ const Form = () => {
           className={style.btnCloseWindow}
           onClick={() => {
             dispatch({
-              type: 'closeForm',
+              type: "closeForm",
             });
           }}
         >
-          {' '}
+          {" "}
           &#10006;
         </button>
       </div>
     </div>
   );
 };
-export default Form;
+export default ModalWindowDates;

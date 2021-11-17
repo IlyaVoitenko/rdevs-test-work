@@ -1,19 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import style from "./Header.module.scss";
 export default function Header() {
   return (
     <header>
       <nav>
-        <ul className="navigateListLinks">
+        <ul className={style.navBar}>
           <li>
-            <Link to="/">CalendarPage</Link>
+            <Link to="/" className={style.link}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/AboutUs">About Us</Link>
-          </li>
-          <li>
-            <Link to="/Form">Form</Link>
+            <Link to="/AboutUs" className={style.link}>
+              About Us
+            </Link>
           </li>
         </ul>
       </nav>
