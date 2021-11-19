@@ -8,7 +8,7 @@ import {
   getNextMonthDaysAmount,
   getCurrentYear,
   getCurrentMonth,
-} from "./selectors";
+} from "../selectors";
 import { dayOfWeek, getArrayOfDatesString } from "./helpers";
 
 //TODO: move all selectors to separate file

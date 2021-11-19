@@ -4,12 +4,13 @@ import DaysOfMonth from "./DaysOfMonth/DaysOfMonth";
 import MonthAndYear from "./MonthAndYear/MonthAndYear";
 import { useSelector } from "react-redux";
 import ModalWindowDates from "../ModalWindowDates";
-import ImgComponent from "./ImgComponent";
+import ImgNearCalendar from "./ImgNearCalendar";
+import { getStateModalWindowDates } from "./selectors";
 const CalendarPage = () => {
-  const isOpen = useSelector((state) => state.isOpen);
+  const isOpen = useSelector(getStateModalWindowDates);
   return (
     <div className={style.container}>
-      <ImgComponent />
+      <ImgNearCalendar />
       <div className={style.CalendarDiv}>
         <div className={style.containerDaysMonth}>
           <MonthAndYear />

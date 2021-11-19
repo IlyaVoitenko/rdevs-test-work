@@ -9,7 +9,8 @@ const Day = ({ fullDate }) => {
     let day = fullDate.slice("-")[0];
     const dayOfWeek = moment(`${fullDate}`, "YYYY-MM-DD").format("dddd");
     const nameMonth = moment(`${fullDate}`, "YYYY-MM-DD").format("MMMM");
-    const dataDayNumberAndNameTheDay = `${day} th ${dayOfWeek}`;
+    //dataDayNumberAndNameTheDay can't to be const so dates im modal must change
+    let dataDayNumberAndNameTheDay = `${day} th ${dayOfWeek}`;
     dispatch({
       type: "openForm",
       payload: { day: dataDayNumberAndNameTheDay, month: nameMonth },

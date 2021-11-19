@@ -6,6 +6,9 @@ export function getCurrentYear(state) {
 export function getCurrentMonth(state) {
   return state.currentMonth;
 }
+export function getStateModalWindowDates(state) {
+  return state.isOpen;
+}
 
 export function getPrevMonthDaysAmount(state) {
   const { currentMonth, currentYear } = state;
